@@ -1,7 +1,6 @@
 #include <iostream>
-#include <string>
 
-unsigned long long int prod(unsigned long long int a, unsigned long long int b) {
+unsigned long long int prod(const unsigned long long int &a, const unsigned long long int &b) {
 
 	if (b == 0) return 0;
 	else if (b == 1) return a;

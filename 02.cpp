@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-std::string transformar(unsigned int a) {
+std::string transformar(const unsigned int &a) {
 
 	if (a == 1) return "1";
 	return transformar(a / 2) + std::to_string(a%2);
