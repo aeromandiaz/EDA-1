@@ -1,27 +1,27 @@
 #include <iostream>
 
-int eliminarPares(const unsigned int &n) {
+unsigned long long int eliminarPares(const unsigned long long int &n) {
 
 	if (n == 0)	return 0;
 
-	if ((n % 10) % 2 != 0) return (eliminarPares(n / 10) * 10) + (n % 10);
+	unsigned long long int aux = n % 10, numero = eliminarPares(n / 10);
+	if (aux % 2 != 0) return (numero * 10) + aux;
 
-	return eliminarPares(n / 10);
+	return numero;
 }
 
-void resuelveCaso() {
+bool resuelveCaso() {
 	unsigned long long int a;
 	std::cin >> a;
 
+	if (!std::cin) return false;
+
 	std::cout << eliminarPares(a) << '\n';
+	return true;
 }
 
 int main() {
-	int casos = 0;
-	std::cin >> casos;
-
-	for (int i = 0; i < casos; ++i) {
-		resuelveCaso();
+	while(resuelveCaso()) {
 	}
 	return 0;
 }
