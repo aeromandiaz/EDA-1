@@ -14,32 +14,36 @@ struct sol {
 
 sol invertir(const unsigned long long int &n) {
 
-	unsigned long long int aux = 1;
+	//unsigned long long int aux = 1;
 
 	if (n <= 9) {
-		sol numInvertido(n, n % 10);
+		sol numInvertido(n, 10);
 		return numInvertido;
 	}
 	sol numInvertido;
-	while (n / (aux * 10))
-		aux *= 10;
+	/*while (n / (aux * 10))
+		aux *= 10;*/
 	numInvertido.pot = n % 10;
-	numInvertido.numero = invertir(n / 10).numero + numInvertido.pot * aux;
-	
+	//numInvertido.numero = invertir(n / 10).numero + numInvertido.pot * aux;
+	numInvertido.numero = invertir(n / 10).numero + numInvertido.pot * (n % 10);
+	numInvertido.pot *= 10;
+
 	return numInvertido;
 }
 
-bool resuelveCaso() {
+void resuelveCaso() {
 	unsigned int a;
 	std::cin >> a;
-	if (!std::cin) return false;
 
 	std::cout << invertir(a).numero << '\n';
-	return true;
 }
 
 int main() {
-	while (resuelveCaso()) {
+	int casos = 0;
+	std::cin >> casos;
 
+	for (int i = 0; i < casos; ++i) {
+		resuelveCaso();
 	}
+	return 0;
 }
