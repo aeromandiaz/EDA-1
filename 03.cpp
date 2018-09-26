@@ -23,7 +23,7 @@ sol invertir(const unsigned long long int &n) {
 	sol numInvertido;
 	/*while (n / (aux * 10))
 		aux *= 10;*/
-	numInvertido.pot = n % 10;
+	//numInvertido.pot = n % 10;
 	//numInvertido.numero = invertir(n / 10).numero + numInvertido.pot * aux;
 	numInvertido.numero = invertir(n / 10).numero + numInvertido.pot * (n % 10);
 	numInvertido.pot *= 10;
