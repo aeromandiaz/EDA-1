@@ -1,60 +1,53 @@
 #include <iostream>
 #include <vector>
 
-int particion(std::vector<int> &v, const int &ini, const int &fin) {
-	int pivot = v[fin];
-	int aux = (ini - 1);
+//		| c0 si n == 1
+// T(n) |
+//		| T(n/2) + c0 si n > 1
+//
+//	Despliegue:
+//	T(n) = T(n/2) + c0 = T(n/(2^2)) + c0 + c0 = T(n/(2^3)) + c0 + c0 + c0 =...
+//	= T(n/(2^k)) + k*c0
+//	Por tanto, log(n) + n*c0
+//
+//Coste O(logn)
+int buscarMinimo(const std::vector<int> &v, const int &ini, const int &fin) {
+	if (ini + 1 == fin) // Si el vector tiene un elemento
+		return v[ini];
 
-	for (int i = ini; i <= fin - 1; ++i) {
-		if (v[i] <= pivot) {
-			++aux;
-			int temp = v[aux];
-			v[aux] = v[i];
-			v[i] = temp;
-		}
-	}
-	int temp = v[fin];
-	v[fin] = v[aux + 1];
-	v[aux + 1] = temp;
- 	
-	return (aux + 1);
-}
+	int m = (ini + fin - 1) / 2;
 
-
-void quickSort(std::vector<int> &v, int ini, int fin) {
-	if (ini < fin) {
-		int pivot = particion(v, ini, fin);
-
-		quickSort(v, ini, pivot - 1);
-		quickSort(v, pivot + 1, fin);
-	}
+	if (v[ini] < v[m]) //Si el elemento inicial es menor que el actual
+		return buscarMinimo(v, ini, m + 1);
+	else if (v[m + 1] < v[m]) //Si el elemento justo siguiente es menor que el actual
+		return buscarMinimo(v, m + 1, fin);
+	return v[m]; //Si es el menor
 }
 
 
 
 bool resuelveCaso() {
-    int n;
-    std::cin >> n;
-    
-    if(!std::cin) return false;
-    
-    std::vector<int> v;
-    
-    for (int i = 0; i < n; ++i) {
-        int aux;
-        std::cin >> aux;
-        v.push_back(aux);
-    }
+	int n;
+	std::cin >> n;
 
-	quickSort(v, 0, n-1);
-	std::cout << v[0] << '\n';
-    
-    return true;
+	if (!std::cin) return false;
+
+	std::vector<int> v;
+
+	for (int i = 0; i < n; ++i) {
+		int aux;
+		std::cin >> aux;
+		v.push_back(aux);
+	}
+
+	std::cout << buscarMinimo(v, 0, n) << '\n';
+
+	return true;
 }
 
 int main() {
-    
-    while(resuelveCaso());
-    
-    return 0;
+
+	while (resuelveCaso());
+
+	return 0;
 }
