@@ -2,20 +2,41 @@
 #include <vector>
 #include <fstream>
 
-//Coste O(n)
-unsigned int buscarPos(const std::vector<unsigned int> &v, const int &pos, const int &find) {
-	if (pos < v.size()) {
-		if(pos + find == v[pos]) return v[pos];
-		return buscarPos(v, pos + 1, find);
+//		| c0 si n == 1
+// T(n) |
+//		| T(n/2) + c0 si n > 1
+//
+//	Despliegue:
+//	T(n) = T(n/2) + c0 = T(n/(2^2)) + c0 + c0 = T(n/(2^3)) + c0 + c0 + c0 =...
+//	= T(n/(2^k)) + k*c0
+//	Por tanto, log(n) + n*c0
+//
+//Coste O(logn)
+bool buscarPos(const std::vector<unsigned int> &v, const int &ini, const int &fin, const int &find,
+	unsigned int &res) {
+	if (ini + 1 == fin) { // Si el vector tiene un elemento
+		res = v[ini];
+		return v[ini] == find + ini; //Retorno el valor si se cumple
 	}
-	else
-		return -1;
+
+	int m = (ini + fin - 1) / 2;
+
+	if (v[m] == find + m) { //Retorno el valor si se cumple
+		res = v[m];
+		return true;
+	}
+
+	if (v[m] > find + m) //Si el elemento actual es mayor que su posicion más el cantado busco en los anteriores
+		return buscarPos(v, ini, m + 1, find, res);
+	else 
+		return buscarPos(v, m + 1, fin, find, res);
+	return false; 
 }
 
 void resuelveCaso() {
 
 	std::vector<unsigned int> v;
-	unsigned int n, find, res;
+	unsigned int n, find, res = 0;
 	std::cin >> n >> find;
 
 
@@ -25,9 +46,7 @@ void resuelveCaso() {
 		v.push_back(aux);
 	}
 
-	res = buscarPos(v, 0, find);
-
-	if (res == -1) 
+	if (!buscarPos(v, 0, n, find, res))
 		std::cout << "NO\n";
 	else 
 		std::cout << res << '\n';
