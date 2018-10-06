@@ -43,7 +43,7 @@ par dividir(const std::vector<int> &v, const int &ini, const int &fin) {
 		p.ord = false;
 		return p;
 	}
-	p.ord = true;
+	p.ord = iz.ord && dr.ord && iz.mayor < dr.mayor && iz.menor < dr.menor;
 
 	p.menor = std::min(iz.menor, dr.menor);
 	p.mayor = std::max(iz.mayor, dr.mayor);
@@ -78,19 +78,19 @@ bool resuelveCaso() {
 int main() {
 	// Para la entrada por fichero.
 	// Comentar para acepta el reto
-	/*#ifndef DOMJUDGE
+	#ifndef DOMJUDGE
 	std::ifstream in("datos.txt");
 	auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
-	#endif*/
+	#endif
 
 	while (resuelveCaso());
 
 
 	// Para restablecer entrada. Comentar para acepta el reto
-	/*#ifndef DOMJUDGE // para dejar todo como estaba al principio
+	#ifndef DOMJUDGE // para dejar todo como estaba al principio
 	std::cin.rdbuf(cinbuf);
 	system("PAUSE");
-	#endif*/
+	#endif
 
 	return 0;
 }
