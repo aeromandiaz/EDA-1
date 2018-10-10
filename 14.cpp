@@ -1,4 +1,4 @@
-//Ejercicio 13
+//Ejercicio 14
 //Mauricio Abbati Loureiro - EDA 2ºE 2018/2019
 //E01
 #include <iostream>
@@ -39,24 +39,27 @@ degradado esDegradado(const std::vector<int> &v, const int &ini, const int &fin)
 bool resuelveCaso() {
 
 	int n, m;
-	bool vectorDegradado = false;
+	bool vectorDegradado = true;
 	std::cin >> n;
 
 	if (!std::cin) return false;
 
 	std::cin >> m;
-	std::vector<int> v;
+	std::vector<std::vector<int>> v;
 
-	for (int f = 0; f < m * n; ++f) {
-		int aux;
-		std::cin >> aux;
-		v.push_back(aux);
+	for (int f = 0; f < n; ++f) {
+		std::vector<int> vAux;
+		for (int c = 0; c < m; ++c) {
+			int aux;
+			std::cin >> aux;
+			vAux.push_back(aux);
+		}
+		v.push_back(vAux);
 	}
 
-	if (v.size() > 1) { //Si el vector es de un unico elemento no es degradado.
-		vectorDegradado = true;
+	if (m > 1) { //Si el vector es de un unico elemento no es degradado.
 		for (int i = 0; i < n && vectorDegradado; ++i)
-			vectorDegradado = esDegradado(v, m * i, m * (i + 1)).ok; //Cojo el vector completo y la voy dividiendo en sub-vectores.
+			vectorDegradado = esDegradado(v[i], 0, v[i].size()).ok; //Cojo el vector completo y la voy dividiendo en sub-vectores.
 	}
 
 
@@ -86,4 +89,3 @@ int main() {
 
 	return 0;
 }
-
