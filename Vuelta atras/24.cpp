@@ -15,7 +15,7 @@ std::ostream& operator << (std::ostream &o, const std::vector<tColores> &v) {
 	for (int i = 0; i < v.size(); ++i) {
 		if (v[i] == ROJO)
 			o << "rojo";
-		else if(v[i] == AZUL)
+		else if (v[i] == AZUL)
 			o << "azul";
 		else
 			o << "verde";
@@ -28,11 +28,12 @@ std::ostream& operator << (std::ostream &o, const std::vector<tColores> &v) {
 }
 
 bool esValida(const int &k, const int &n, const std::vector<tColores> &v, const int &r, const int &g, const int &b) {
-	return k + 1 < n && (g <= b || g == 0 && b == 0) && (k - 1 == 0 ||
-		((v[k - 1] != VERDE && v[k] != VERDE) || (v[k - 1] == VERDE && v[k] != VERDE) || (v[k - 1] != VERDE && v[k] == VERDE)));
+	if (g > b) return false;
+	if (k > 0 && v[k - 1] == VERDE && v[k] == VERDE) return false;
+	return true;
 }
 
-void calcularCombinaciones(std::vector<tColores> &v, const int &n, const int &k, int r, int g, int b, bool &sol, 
+void calcularCombinaciones(std::vector<tColores> &v, const int &n, const int &k, int r, int g, int b, bool &sol,
 	const int &ROJAS, const int &AZULES, const int &VERDES) {
 
 	for (int i = 0; i < 3; ++i) {
@@ -44,12 +45,18 @@ void calcularCombinaciones(std::vector<tColores> &v, const int &n, const int &k,
 				++g;
 			else if (b < AZULES)
 				++b;
-			if (k + 1 == n && (b + g) < r && (g <= b || g == 0 && b == 0)) { //Es solución
-				std::cout << v; //con sobrecarga para el vector.
-				sol = true;
+
+			if (esValida(k, n, v, r, g, b)) {
+				if (k + 1 == n) {
+					if (b + g < r) { //Es solución
+						std::cout << v; //con sobrecarga para el vector.
+						sol = true;
+					}
+				}
+				else
+					calcularCombinaciones(v, n, k + 1, r, g, b, sol, ROJAS, AZULES, VERDES);
 			}
-			else if (esValida(k, n, v, r, g, b))
-				calcularCombinaciones(v, n, k + 1, r, g, b, sol, ROJAS, AZULES, VERDES);
+
 			if (parserColor(i) == ROJO)
 				--r;
 			else if (parserColor(i) == VERDE)
