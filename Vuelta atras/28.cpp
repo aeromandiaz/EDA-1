@@ -15,8 +15,8 @@ void supermercado(std::vector<int> &sol, const int &k, const int &n, const int &
     for (int i = 0; i < n; ++i){
         sol[k] = i;
         if(esValida(contSup, i)){
-            coste = coste + costes[i][k];
-            contSup[i] = contSup[i]+1;
+            coste += costes[i][k];
+            contSup[i]++;
             if(k + 1 == p){ // Es solución
                 if(coste < costeMejor) //Es mejor solución
                     costeMejor = coste;
@@ -26,8 +26,8 @@ void supermercado(std::vector<int> &sol, const int &k, const int &n, const int &
                 if(coste < costeMejor)
                     supermercado(sol, k + 1, n, p, costes, contSup, minimos, coste, costeMejor,haySol);
             }
-            coste = coste - costes[i][k];
-            contSup[i] = contSup[i]-1;
+            coste -= costes[i][k];
+            contSup[i]--;
         }
     }
 }
@@ -42,15 +42,12 @@ void resuelveCaso() {
     std::vector<int> minimos, contSup, sol(3*n);
     
     int costeMejor = 2147483647;
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < n; ++i){
         contSup.push_back(0);
-        for(int j = 0; j < p; j++){
+        for(int j = 0; j < p; ++j){
             std::cin >> costes[i][j];
-            if(j == 0)
+            if(j == 0 || costes[i][j] < minimos[i])
                 minimos.push_back(costes[i][j]);
-            else if(costes[i][j] < minimos[i]){
-                minimos.push_back(costes[i][j]);
-            }
         }
     }
     
