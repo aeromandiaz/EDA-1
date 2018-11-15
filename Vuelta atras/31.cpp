@@ -1,4 +1,4 @@
-//Ejercicio 31
+﻿//Ejercicio 31
 //Mauricio Abbati Loureiro - EDA 2ºE 2018/2019
 //E01
 #include <iostream>
@@ -11,7 +11,7 @@ bool esValida(const tMatriz &matriz, const int &mejorPunt, const int &pMin,
 	const int &presMax , const int &k, const int &i, 
 	const int &sueldoAc, const int &puntAc) {
 
-	if (matriz[k][i] < pMin) return false;
+	if (matriz[k][i] < pMin ) return false;
 	if (sueldoAc > presMax) return false;
 
 	return true;
