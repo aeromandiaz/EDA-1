@@ -63,7 +63,13 @@ void vueltaAtras(std::vector<bool> &sol, const int &k, const tMatriz &canciones,
     tiempoAc2 -= canciones[k][0];
     puntAc2 -= canciones[k][1];
     
-    if(k + 1 < n)
+    if(k + 1 == n) {
+        if(mejorSolucion < puntAc1 + puntAc2 && (tiempoAc1 == t1 && tiempoAc2 == t2)){
+            mejorSolucion = puntAc1 + puntAc2;
+            haySol = true;
+        }
+    }
+    else
         vueltaAtras(sol, k + 1, canciones, n, t1, t2, mejorSolucion, haySol, tiempoAc1, puntAc1, tiempoAc2, puntAc2);
 }
 
