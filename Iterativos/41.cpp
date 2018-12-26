@@ -22,22 +22,29 @@ std::istream& operator>> (std::istream& entrada, piedrasPreciosas& p) {
 
 int resolver(std::vector<piedrasPreciosas> const& v, const int &tamSec, const piedrasPreciosas &t1, const piedrasPreciosas &t2, const int &numT1, const int &numT2) {
     
-    int secuencias = 0, n = 0;
+    int secuencias = 0, primera = 0, segunda = 0;
     
-    while (tamSec + n <= v.size()) {
-        int primera = 0, segunda = 0;
-        for (int i = n; i < n + tamSec; ++i) {
-            if (v[i] == t1)
-                ++primera;
-            else if (v[i] == t2)
-                ++segunda;
-            if (numT1 == primera && numT2 == segunda) {
-                ++secuencias;
-                primera = 0;
-                segunda = 0;
-            }
-        }
-        ++n;
+    for (int i = 0; i < tamSec; ++i) {
+        if (v[i] == t1)
+            ++primera;
+        if (v[i] == t2)
+            ++segunda;
+    }
+    
+    if (numT1 <= primera && numT2 <= segunda)
+        ++secuencias;
+    
+    for (int i = tamSec; i < v.size(); ++i) {
+        if (v[i] == t1)
+            ++primera;
+        if (v[i] == t2)
+            ++segunda;
+        if (v[i - tamSec] == t1)
+            --primera;
+        if (v[i - tamSec] == t2)
+            --segunda;
+        if (numT1 <= primera && numT2 <= segunda)
+            ++secuencias;
     }
     
     return secuencias;
