@@ -27,7 +27,7 @@ int resolver(std::vector<piedrasPreciosas> const& v, const int &tamSec, const pi
     for (int i = 0; i < tamSec; ++i) {
         if (v[i] == t1)
             ++primera;
-        if (v[i] == t2)
+        else if (v[i] == t2)
             ++segunda;
     }
     
@@ -37,11 +37,11 @@ int resolver(std::vector<piedrasPreciosas> const& v, const int &tamSec, const pi
     for (int i = tamSec; i < v.size(); ++i) {
         if (v[i] == t1)
             ++primera;
-        if (v[i] == t2)
+        else if (v[i] == t2)
             ++segunda;
         if (v[i - tamSec] == t1)
             --primera;
-        if (v[i - tamSec] == t2)
+        else if (v[i - tamSec] == t2)
             --segunda;
         if (numT1 <= primera && numT2 <= segunda)
             ++secuencias;
