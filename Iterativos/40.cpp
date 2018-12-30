@@ -19,6 +19,10 @@ tSol resolver(std::vector<int> const& v) {
         if (v[i] > 0) {
             ++contador;
             if (maxGanados <= contador) {
+                if (maxGanados < contador)
+                    partidosSeguidos = 1;
+                else
+                    ++partidosSeguidos;
                 maxGanados = contador;
                 fin = i;
             }
@@ -27,18 +31,6 @@ tSol resolver(std::vector<int> const& v) {
     }
         
     nPartidosRachaGan = v.size() - fin - 1;
-    
-    contador = 0;
-    
-    for (int i = 0; i < v.size(); ++i) {
-        if (v[i] > 0) {
-            ++contador;
-            if (contador == maxGanados)
-                ++partidosSeguidos;
-        }
-        else
-            contador = 0;
-    }
     
     return tSol {maxGanados, partidosSeguidos, nPartidosRachaGan};
 }
