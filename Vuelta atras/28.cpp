@@ -11,23 +11,23 @@ bool esValida(const std::vector<int> &marcas, const int &k) {
     return marcas[k] < 3;
 }
 
-void supermercado(std::vector<int> &sol, const int &k, const int &n, const int &p, const tMatriz &costes,  std::vector<int> &contSup, std::vector<int> &minimos, int &coste, int &costeMejor, bool &haySol){
+void supermercado(std::vector<int> &sol, const int &k, const int &n, const int &p, const tMatriz &costes,  std::vector<int> &marcas, int costeAc, int &costeMejor, bool &haySol){
     for (int i = 0; i < n; ++i){
         sol[k] = i;
-        if(esValida(contSup, i)){
-            coste += costes[i][k];
-            contSup[i]++;
+        if(esValida(marcas, i)){
+            costeAc += costes[i][k];
+            ++marcas[i];
             if(k + 1 == p){ // Es solución
-                if(coste < costeMejor) //Es mejor solución
-                    costeMejor = coste;
+                if(costeAc < costeMejor) //Es mejor solución
+                    costeMejor = costeAc;
                 haySol = true;
             }
             else{
-                if(coste < costeMejor)
-                    supermercado(sol, k + 1, n, p, costes, contSup, minimos, coste, costeMejor,haySol);
+                if(costeAc < costeMejor)
+                    supermercado(sol, k + 1, n, p, costes, marcas, costeAc, costeMejor,haySol);
             }
-            coste -= costes[i][k];
-            contSup[i]--;
+            costeAc -= costes[i][k];
+            --marcas[i];
         }
     }
 }
@@ -38,26 +38,22 @@ void resuelveCaso() {
     std::cin >> n;
     std::cin >> p;
     
-    tMatriz costes(n, std::vector<int>(3*n));
-    std::vector<int> minimos, contSup, sol(3*n);
+    tMatriz costes(n, std::vector<int>(p));
+    std::vector<int> minimos, marcas(n, 0), sol(3*n);
     
-    int costeMejor = 2147483647;
+    int costeMejor = 0;
     for(int i = 0; i < n; ++i){
-        contSup.push_back(0);
         for(int j = 0; j < p; ++j){
             std::cin >> costes[i][j];
-            if(j == 0 || costes[i][j] < minimos[i])
-                minimos.push_back(costes[i][j]);
+            costeMejor += costes[i][j];
         }
     }
     
-    int coste = 0;
-    int k = 0;
     bool haySol = false;
-    if( n == 0 || p == 0)
+    if(n == 0 || p == 0)
         std::cout << 0 << "\n";
     else{
-        supermercado(sol, k, n, p, costes, contSup, minimos, coste, costeMejor, haySol);
+        supermercado(sol, 0, n, p, costes, marcas, 0, costeMejor, haySol);
         if(haySol)
             std::cout << costeMejor << "\n";
         else
