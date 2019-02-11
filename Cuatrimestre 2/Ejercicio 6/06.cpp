@@ -37,6 +37,10 @@ public:
         }
     }
     
+    void fin() {
+        if (!pila.empty()) equilibrado = false;
+    }
+    
 };
 
 
@@ -57,6 +61,8 @@ bool resuelveCaso() {
             p.compruebaEquilibrio();
         }
     }
+    
+    if (p.getEquilibrada()) p.fin();
     
     if (p.getEquilibrada()) std::cout << "SI\n";
     else std::cout << "NO\n";
