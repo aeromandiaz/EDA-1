@@ -8,22 +8,18 @@
 
 
 bool compruebaEquilibrio(std::stack<char> &pila) {
-	if (!pila.empty()) {
-		if (pila.top() == ']' || pila.top() == '}' || pila.top() == ')') {
-			char ultimo = pila.top(); pila.pop();
+	char ultimo = pila.top(); pila.pop();
 
-			if (pila.empty())
-				return false;
-			else if (ultimo == ']' && pila.top() == '[')
-				pila.pop();
-			else if (ultimo == ')' && pila.top() == '(')
-				pila.pop();
-			else if (ultimo == '}' && pila.top() == '{')
-				pila.pop();
-			else
-				return false;
-		}
-	}
+	if (pila.empty())
+		return false;
+	else if (ultimo == ']' && pila.top() == '[')
+		pila.pop();
+	else if (ultimo == ')' && pila.top() == '(')
+		pila.pop();
+	else if (ultimo == '}' && pila.top() == '{')
+		pila.pop();
+	else
+		return false;
 
 	return true;
 }
@@ -40,7 +36,7 @@ bool resuelveCaso() {
 	bool continua = true;
 
 	for (int i = 0; i < entrada.size() && continua; ++i) {
-		if(entrada[i] == '[' || entrada[i] == '(' || entrada[i] == '{')
+		if (entrada[i] == '[' || entrada[i] == '(' || entrada[i] == '{')
 			pila.push(entrada[i]);
 		if (entrada[i] == ']' || entrada[i] == ')' || entrada[i] == '}') {
 			pila.push(entrada[i]);
