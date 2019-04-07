@@ -21,22 +21,15 @@ bool resuelveCaso() {
         getline(std::cin, nombre);
         std::cin >> eval;
         
-        if (lista.count(nombre) == 1) {
-            if (eval == "INCORRECTO")
-                lista[nombre]--;
-            else
-                lista[nombre]++;
-        }
-        
         if (eval == "INCORRECTO")
-            lista.insert({nombre, -1});
+            lista[nombre]--;
         else
-            lista.insert({nombre, 1});
+            lista[nombre]++;
     }
     
-    for (auto it = lista.cbegin(); it != lista.cend(); ++it) {
-        if (it->second != 0)
-            std::cout << it->first << ", " << it->second << "\n";
+    for (auto c : lista) {
+        if (c.second != 0)
+            std::cout << c.first << ", " << c.second << "\n";
     }
     std::cout << "---\n";
     
