@@ -1,8 +1,6 @@
 #ifndef Amazon_h
 #define Amazon_h
 
-#include <iostream>
-#include <iomanip>
 #include <string>
 #include <unordered_map>
 #include <list>
@@ -10,96 +8,77 @@
 #include <stdexcept>
 #include <map>
 
-using libro = std::string;
+using libro = typename std::string;
+using vendidos = int;
 
-const int TOP = 10;
-
-struct tEst{
-    int vendidos = 0;
-    int unidades = 0;
+struct tInfo {
+    int ejemplares = 0;
+    vendidos v = 0;
+    std::list<libro>::const_iterator it;
 };
 
 class Amazon {
-private:
-    std::unordered_map<libro, tEst>ejemplares;
-    std::map<int, std::list<libro>>tablaVentas;
-    std::unordered_map<libro, std::list<libro>::const_iterator>iteradores;
+    
+    const int TOP = 10;
+    
+    std::unordered_map<libro, tInfo> libros;
+    std::map<vendidos, std::list<libro>, std::greater<vendidos>> topVentas;
     
 public:
-    void nuevoLibro(int n, const libro &x) {
-        ejemplares[x].unidades += n;
+    void nuevoLibro(int n, const libro &x) { //O(1)
+        libros[x].ejemplares += n;
     }
     
-    void comprar(const libro &x){
-        auto itL = ejemplares.find(x);
+    void comprar(const libro &x) { //O(logn)
+        const auto& it = libros.find(x);
+        if (it == libros.cend())
+            throw std::invalid_argument("Libro no existente");
+        if (it->second.ejemplares <= 0)
+            throw std::out_of_range("No hay ejemplares");
+        if (it->second.v > 0)
+            topVentas[it->second.v].erase(it->second.it);
+        it->second.ejemplares--;
+        it->second.v++;
         
-        if (itL == ejemplares.cend())
+        auto& itTop = topVentas[it->second.v];
+        itTop.push_front(it->first);
+        it->second.it = itTop.cbegin();
+    }
+    
+    bool estaLibro(const libro &x) const{ //O(1)
+        return libros.count(x) == 1;
+    }
+    
+    void elimLibro(const libro &x) { //O(logn) si hay vendidos, sino se ha vendido ninguno O(1)
+        auto it = libros.find(x);
+        if (it != libros.cend()) {
+            if (it->second.v > 0)
+                topVentas[it->second.v].erase(it->second.it);
+            libros.erase(it);
+        }
+    }
+    
+    int numEjemplares(const libro &x) const { //O(1)
+        const auto& it = libros.find(x);
+        if (it == libros.cend())
             throw std::invalid_argument("Libro no existente");
-        else{
-            if (itL->second.unidades == 0)
-                throw std::out_of_range("No hay ejemplares");
-            else {
-                if (itL->second.vendidos == 0) {
-                    tablaVentas[1].push_front(x);
-                    iteradores[x] = tablaVentas[1].begin();
-                }
-                else {
-                    tablaVentas[itL->second.vendidos].erase(iteradores[x]);
-                    tablaVentas[itL->second.vendidos + 1].push_front(x);
-                    iteradores[x] = tablaVentas[itL->second.vendidos + 1].begin();
-                }
-                itL->second.unidades--;
-                itL->second.vendidos++;
+        return it->second.ejemplares;
+    }
+    
+    std::list<libro> top10() const { //O(n), siendo n el top de libros a consultar (en este caso, 10)
+        auto it = topVentas.cbegin();
+        std::list<libro> res;
+        
+        for(int i = 0; i < TOP && it != topVentas.cend(); ++it) {
+            for (auto itLista = it->second.cbegin(); itLista != it->second.cend() && i < TOP; ++i) {
+                res.push_back(*itLista);
+                itLista++;
             }
         }
-    }
-    
-    bool estaLibro(const libro &x) {
-        auto itL = ejemplares.find(x);
-        if (itL == ejemplares.cend())
-            return false;
-        else
-            return true;
-    }
-    
-    void elimLibro(const libro &x) {
-        auto itL = ejemplares.find(x);
-        if (itL != ejemplares.end()){
-            if (itL->second.vendidos > 0){
-                tablaVentas[itL->second.vendidos].erase(iteradores[x]);
-                iteradores.erase(x);
-            }
-            ejemplares.erase(x);
-            
-        }
-    }
-    
-    int numEjemplares(const libro &x) {
-        auto itL = ejemplares.find(x);
-        if (itL == ejemplares.cend())
-            throw std::invalid_argument("Libro no existente");
-        else
-            return itL->second.unidades;
-    }
-    
-    
-    std::list<libro> top10(){
-        std::list<libro> top10;
-        int n = 0;
-        auto it = tablaVentas.rbegin();
-        while (it != tablaVentas.rend() && n < TOP) {
-            auto itCola = it->second.begin();
-            while (n < TOP && itCola != it->second.cend()) {
-                top10.push_back(*itCola);
-                itCola++;
-                ++n;
-            }
-            it++;
-        }
-        return top10;
+        
+        return res;
     }
     
 };
-
 
 #endif
