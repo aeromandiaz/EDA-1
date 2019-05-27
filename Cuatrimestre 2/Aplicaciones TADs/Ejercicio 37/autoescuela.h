@@ -2,96 +2,85 @@
 #define autoescuela_h
 
 #include <iostream>
-#include <iomanip>
+#include <list>
+#include <set>
+#include <string>
 #include <unordered_map>
-#include <algorithm>
 #include <vector>
+#include <iterator>
 #include <stdexcept>
 
-using alumno = std::string;
-using profesor = std::string;
+using profesor = typename std::string;
+using alumno = typename std::string;
 
-class autoescuela {
-    std::unordered_map<alumno, int>tablaPuntuacion;
-    std::unordered_map<alumno, profesor>tablaAlumnos;
-    std::unordered_map<profesor, std::vector<alumno>>tablaProfesores;
-    
-public:
-    autoescuela() {};
-    
-    void alta(const alumno &a, const profesor &p) {
-        if (tablaPuntuacion.count(a) == 0){
-            tablaPuntuacion.insert({ a, 0 });
-            tablaAlumnos[a] = p;
-            tablaProfesores[p].push_back(a);
-        }
-        else {
-            profesor aux = tablaAlumnos[a];
-            tablaAlumnos[a] = p;
-            for (int i = 0; i < tablaProfesores[aux].size(); ++i) {
-                if (tablaProfesores[aux][i] == a) {
-                    tablaProfesores[aux][i] = tablaProfesores[aux][tablaProfesores[aux].size() - 1];
-                    tablaProfesores[aux].pop_back();
-                }
-            }
-            tablaProfesores[p].push_back(a);
-        }
-    }
-    
-    bool esAlumno(const alumno &a, const profesor &p) {
-        if (tablaAlumnos[a] == p)
-            return true;
-        else
-            return false;
-    }
-    
-    int puntuacion(const alumno &a) {
-        auto itA = tablaAlumnos.find(a);
-        if (itA == tablaAlumnos.cend())
-            throw std::domain_error("El alumno " + a + "no esta matriculado");
-        else
-            return tablaPuntuacion[a];
-    }
-    
-    void actualizar(const alumno &a, int n) {
-        auto itA = tablaPuntuacion.find(a);
-        if (itA == tablaPuntuacion.cend())
-            throw std::domain_error("El alumno " + a + "no esta matriculado");
-        else
-            itA->second += n;
-    }
-    
-    std::vector<alumno> examen(const profesor &p, int n) {
-        std::vector<alumno>sol;
-        auto itP = tablaProfesores.find(p);
-        if (itP == tablaProfesores.end()) tablaProfesores.insert({ p, {} });
-        else{
-            for (auto &a : itP->second){
-                if (tablaPuntuacion[a] >= n)
-                    sol.push_back(a);
-            }
-            std::sort(sol.begin(), sol.end());
-        }
-        return sol;
-    }
-    
-    void aprobar(const alumno &a) {
-        if (tablaAlumnos.find(a) == tablaAlumnos.end())
-            throw std::domain_error("El alumno " + a + "no esta matriculado");
-        tablaAlumnos.erase(a);
-        tablaPuntuacion.erase(a);
-        auto itP = tablaProfesores.begin();
-        while (itP != tablaProfesores.end()){
-            for (int i = 0; i < itP->second.size(); ++i){
-                if (itP->second[i] == a){
-                    itP->second[i] = itP->second[itP->second.size() - 1];
-                    itP->second.pop_back();
-                }
-            }
-            ++itP;
-        }
-    }
+struct tInfo {
+    int puntuacion;
+    profesor p;
+    std::set<alumno>::const_iterator itAl;
 };
 
+class Autoescuela {
+    std::unordered_map<alumno, tInfo> alumnos;
+    std::unordered_map<profesor, std::set<alumno>> profesores;
+    
+public:
+    
+    Autoescuela() {}
+    
+    void alta(const alumno &A, const profesor &P) { //O(1)
+        auto it = alumnos.find(A);
+        if (it == alumnos.cend()) {
+            const auto it2 = profesores[P].insert(A);
+            alumnos[A] = {0, P, it2.first};
+        } else {
+            profesores[it->second.p].erase(it->second.itAl);
+            it->second.p = P;
+            const auto it2 = profesores[P].insert(A);
+            it->second.itAl = it2.first;
+        }
+    }
+    
+    bool es_alumno(const alumno &A, const profesor &P) const { //O(1)
+        return (alumnos.count(A) == 1 && alumnos.at(A).p == P);
+    }
+    
+    int puntuacion(const alumno &A) const { //O(1)
+        auto it = alumnos.find(A);
+        if (it == alumnos.cend())
+            throw std::domain_error("El alumno " + A + " no esta matriculado");
+        return it->second.puntuacion;
+    }
+    
+    void actualizar(const alumno &A, const int &N) { //O(1)
+        auto it = alumnos.find(A);
+        if (it == alumnos.cend())
+            throw std::domain_error("El alumno " + A + " no esta matriculado");
+        it->second.puntuacion += N;
+    }
+    
+    std::vector<alumno> examen(const profesor &P, const int &N) const { //O(1)
+        std::vector<alumno> res;
+        auto it1 = profesores.find(P);
+        if (it1 == profesores.cend())
+            return res;
+        auto it2 = it1->second.cbegin();
+        
+        while (it2 != it1->second.cend()) {
+            if (alumnos.find(*it2)->second.puntuacion >= N)
+                res.push_back(*it2);
+            it2++;
+        }
+        return res;
+    }
+    
+    void aprobar(const alumno &A) { //O(1)
+        auto it = alumnos.find(A);
+        if (it == alumnos.cend())
+            throw std::domain_error("El alumno " + A + " no esta matriculado");
+        profesores[it->second.p].erase(it->second.itAl);
+        alumnos.erase(it);
+    }
+    
+};
 
-#endif
+#endif // autoescuela_h
