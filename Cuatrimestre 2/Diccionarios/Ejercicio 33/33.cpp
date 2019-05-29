@@ -5,11 +5,9 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <map>
+#include <set>
 #include <unordered_map>
 #include <functional>
-#include <algorithm>
-#include <vector>
 
 
 struct tProblema{
@@ -50,14 +48,14 @@ void resuelveCaso() {
         if (estProblema.veredicto != "AC")
             estProblema.intentos = 1;
     
-        if (mapaInscritos.count(equipo) == 0) {
+        if (mapaInscritos.count(equipo) == 0) { //O(1)
             mapaResueltos[equipo] = { equipo, 0, 0 };
             mapaInscritos[equipo].insert({problema, estProblema});
         }
         else if (mapaInscritos.count(equipo) == 1 && mapaInscritos.at(equipo).count(problema) == 1) {
-            if (estProblema.veredicto != "AC" && !mapaInscritos[equipo][problema].resuelto)
+            if (estProblema.veredicto != "AC" && !mapaInscritos[equipo][problema].resuelto) //O(1)
                 mapaInscritos[equipo][problema].intentos++;
-        } else
+        } else //O(1)
             mapaInscritos[equipo].insert({problema, estProblema});
         
         if (estProblema.veredicto == "AC" && !mapaInscritos[equipo][problema].resuelto) {
@@ -70,14 +68,12 @@ void resuelveCaso() {
         std::cin >> equipo;
     }
     
-    std::vector<tSol>sol;
+    std::set<tSol, std::greater<tSol>>sol;
     
-    for (auto &m : mapaResueltos)
-        sol.push_back({m.first, m.second.resueltos, m.second.tiempoTotal});
+    for (auto &m : mapaResueltos) //O(n), siendo n el numero de problemas resueltos
+        sol.insert({m.first, m.second.resueltos, m.second.tiempoTotal}); //O(logn)
     
-    std::sort(sol.begin(), sol.end(), std::greater<tSol>());
-    
-    for (auto &t : sol)
+    for (auto &t : sol) //O(n), siendo n el número de elementos del conjunto anterior
         std::cout << t.equipo << " " << t.resueltos << " " <<  t.tiempoTotal << "\n";
     
     std::cout << "----\n";
