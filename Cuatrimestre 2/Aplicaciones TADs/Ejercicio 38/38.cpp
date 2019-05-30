@@ -3,12 +3,11 @@
 //E01
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <vector>
 #include "iPod.h"
 
 
 bool resuelveCaso() {
-    
     iPod miPod;
     cancion s;
     artista a;
@@ -27,14 +26,10 @@ bool resuelveCaso() {
             }
             else if (orden == "addToPlaylist") {
                 std::cin >> s;
-                miPod.addToPlayList(s);
+                miPod.addToPlaylist(s);
             }
-            else if (orden == "play") {
-                cancion  aux = miPod.play();
-                if (!aux.empty()) std::cout << "Sonando " << aux << "\n";
-                else std::cout << "No hay canciones en la lista\n";
-                
-            }
+            else if (orden == "play")
+                miPod.play();
             else if (orden == "deleteSong") {
                 std::cin >> s;
                 miPod.deleteSong(s);
@@ -62,6 +57,7 @@ bool resuelveCaso() {
     std::cout << "----\n";
     
     return true;
+    
 }
 
 int main() {
@@ -73,8 +69,8 @@ int main() {
     auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
 #endif
     
-    while (resuelveCaso());
-    
+    while(resuelveCaso());
+     
     // Para restablecer entrada. Comentar para acepta el reto
 #ifndef DOMJUDGE // para dejar todo como estaba al principio
     std::cin.rdbuf(cinbuf);

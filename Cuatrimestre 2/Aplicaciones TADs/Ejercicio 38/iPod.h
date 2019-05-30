@@ -2,133 +2,103 @@
 #define iPod_h
 
 #include <iostream>
-#include <iomanip>
+#include <list>
 #include <string>
 #include <unordered_map>
-#include <list>
 #include <iterator>
 #include <stdexcept>
-#include <stack>
 
-using artista = std::string;
-using cancion = std::string;
+using cancion = typename std::string;
+using artista = typename std::string;
 
-struct tCancion{
+struct tInfo {
+    artista a;
     int duracion;
-    artista cantante;
+    std::list<cancion>::const_iterator itListaReproduccion;
+    std::list<cancion>::const_iterator itListaReproducidas;
 };
 
 class iPod {
-private:
-    std::unordered_map<cancion, tCancion> tablaCanciones;
-    
-    std::unordered_map<cancion, std::list<cancion>::const_iterator>tablaIteradoresplayList;
-    std::list<cancion>listaReproduccion;
-    
-    std::list<cancion> reproducidas;
-    std::unordered_map<cancion, std::list<cancion>::const_iterator>tablaIteradoresReproducidas;
-    
-    int time = 0;
+    std::unordered_map<cancion, tInfo> listaCanciones;
+    std::list<cancion> listaReproduccion;
+    std::list<cancion> listaReproducidas;
+    int total = 0;
     
 public:
-    void addSong(const cancion &s, const artista &a, int d) {
-        if (tablaCanciones.find(s) != tablaCanciones.cend())
+    void addSong(const cancion &S, const artista &A, const int D) { //O(1)
+        const auto it = listaCanciones.find(S);
+        if (it != listaCanciones.cend())
             throw std::domain_error("addSong");
         else
-            tablaCanciones.insert({ s, { d,a } });
+            listaCanciones.insert({S, {A, D, listaReproduccion.cend(), listaReproducidas.cend()}});
     }
     
-    void addToPlayList(const cancion &s){
-        auto itC = tablaCanciones.find(s);
-        
-        if (itC == tablaCanciones.cend())
-            throw std::domain_error("addToPlayList");
-        else {
-            auto itI = tablaIteradoresplayList.find(s);
-            
-            if (itI == tablaIteradoresplayList.cend()) {
-                listaReproduccion.push_back(s);
-                auto it = listaReproduccion.cend();
-                it--;
-                tablaIteradoresplayList[s] = it;
-                time += tablaCanciones[s].duracion;
-            }
+    void addToPlaylist(const cancion &S) { //O(1)
+        const auto it = listaCanciones.find(S);
+        if (it == listaCanciones.cend())
+            throw std::domain_error("addToPlaylist");
+        else if (it->second.itListaReproduccion == listaReproduccion.cend()) {
+            listaReproduccion.push_back(S);
+            auto tmp = listaReproduccion.cend();
+            tmp--;
+            it->second.itListaReproduccion = tmp;
+            total += it->second.duracion;
         }
     }
     
-    cancion current() {
+    cancion current() const { //O(1)
         if (listaReproduccion.empty())
             throw std::domain_error("current");
-        else
-            return listaReproduccion.front();
+        return listaReproduccion.front();
     }
     
-    cancion play() {
-        cancion aux;
-        
+    void play() { //O(1)
         if (!listaReproduccion.empty()) {
-            aux  = listaReproduccion.front();
+            std::cout << "Sonando " << current() << "\n";
+            listaReproducidas.push_back(current());
+            auto it = listaCanciones.find(current());
+            it->second.itListaReproduccion = listaReproduccion.cend();
+            if (it->second.itListaReproducidas != listaReproducidas.cend())
+                listaReproducidas.erase(it->second.itListaReproducidas);
+            auto itTmp = listaReproducidas.cend();
+            itTmp--;
+            it->second.itListaReproducidas = itTmp;
             listaReproduccion.pop_front();
-            tablaIteradoresplayList.erase(aux);
-            time -= tablaCanciones[aux].duracion;
-            
-            auto itR = tablaIteradoresReproducidas.find(aux);
-            if (itR != tablaIteradoresReproducidas.end())
-                reproducidas.erase(itR->second);
-            reproducidas.push_back(aux);
-            
-            auto itLRP = reproducidas.end();
-            itLRP--;
-            tablaIteradoresReproducidas[aux] = itLRP;
+            total -= it->second.duracion;
         }
-        return aux;
+        else
+            std::cout << "No hay canciones en la lista\n";
     }
     
-    int totalTime() {
-        if (!listaReproduccion.empty())
-            return time;
-        else return 0;
+    int totalTime() const { //O(1)
+        return total;
     }
     
-    std::list<cancion> recent(int N){
-        std::list<cancion>sol;
-        int i = 1;
+    std::list<cancion> recent(int N) const { //O(n)
+        std::list<cancion> resultado;
         
-        if (!reproducidas.empty()) {
-            
-            auto itRep = reproducidas.cend();
-            itRep--;
-            
-            while (itRep != reproducidas.cbegin() && i < N) {
-                sol.push_back(*itRep);
-                itRep--;
-                i++;
-            }
-            sol.push_back(*itRep);
+        auto it = listaReproducidas.crbegin();
+        
+        for (int i = 0; i < N && it != listaReproducidas.crend(); ++i) {
+            resultado.push_back(*it);
+            ++it;
         }
-        
-        return sol;
+        return resultado;
     }
     
-    void deleteSong(const cancion &s){
-        auto itiPod = tablaCanciones.find(s);
-        
-        if (itiPod != tablaCanciones.cend()) {
-            auto itLP = tablaIteradoresplayList.find(s);
-            if (itLP != tablaIteradoresplayList.cend()) {
-                listaReproduccion.erase(itLP->second);
-                tablaIteradoresplayList.erase(s);
-                time -= tablaCanciones[s].duracion;
+    void deleteSong(const cancion &S) { //O(1)
+        const auto it = listaCanciones.find(S);
+        if (it != listaCanciones.cend()) {
+            if (it->second.itListaReproduccion != listaReproduccion.cend()) {
+                total -= it->second.duracion;
+                listaReproduccion.erase(it->second.itListaReproduccion);
             }
-            auto itR = tablaIteradoresReproducidas.find(s);
-            if (itR != tablaIteradoresReproducidas.cend()) { // Esta en la lista de reproducidas
-                reproducidas.erase(itR->second);
-                tablaIteradoresReproducidas.erase(s);
-            }
-            tablaCanciones.erase(s);
+            if (it->second.itListaReproducidas != listaReproducidas.cend())
+                listaReproducidas.erase(it->second.itListaReproducidas);
+            listaCanciones.erase(it);
         }
     }
+    
 };
 
-
-#endif
+#endif // iPod_h
