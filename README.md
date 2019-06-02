@@ -91,3 +91,12 @@ Desarrollados en C++
 - [¿Es un árbol binario de búsqueda?](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2026/26.cpp)
 - [Reconstrucción de un árbol binario de búsqueda](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2027/27.cpp)
 - [lower-bound](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Arboles/Ejercicio%2027A)
+---
+
+## 7. Diccionarios
+- [Me pilló el toro](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2028/28.cpp)
+- [Capítulos repetidos](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2029/29.cpp)
+- [Actualización de un diccionario](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2030/30.cpp)
+- [Referencias cruzadas](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2031/31.cpp)
+- [Eligiendo deporte](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2032/32.cpp)
+- [Ranking de un concurso de programación](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2033/33.cpp)
