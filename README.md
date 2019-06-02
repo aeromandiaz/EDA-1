@@ -49,19 +49,27 @@ Desarrollados en C++
 - [Caballo](https://github.com/javimv36/EDA/blob/master/files/caballo.cpp)
 - [Genera creciente por los pelos y d-divertido](https://github.com/javimv36/EDA/blob/master/files/feb17-3.cpp)
 
----
-## Ejercicios examen
-- Febrero 2015
-  - [Suma parejas multiplicativas](https://github.com/javimv36/EDA/blob/master/files/feb15-1.cpp)
-  - [Números especulares](https://github.com/javimv36/EDA/blob/master/files/feb15-2.cpp)
-  - [Productos dieta](https://github.com/javimv36/EDA/blob/master/files/feb15-3.cpp)
-- Febrero 2017 (09/02/2017)
-  - [Creciente por los pelos y d-divertido](https://github.com/javimv36/EDA/blob/master/files/feb17-1.cpp)
-  - [Creciente por los pelos](https://github.com/javimv36/EDA/blob/master/files/feb17-2.cpp)
-  - [Genera creciente por los pelos y d-divertido](https://github.com/javimv36/EDA/blob/master/files/feb17-3.cpp)
-- Febrero 2017 (10/02/2017)
-  - [Particion positivos y negativos](https://github.com/javimv36/EDA/blob/master/files/feb17-1-C.cpp)
+
   - [Todos los elementos repetidos 2 veces menos unos](https://github.com/javimv36/EDA/blob/master/files/feb17-2-C.cpp)
 
-
+---
+## 5. TAD's lineales
+- [¿A qué hora pasa el próximo tren?](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%201)
+- [Una tarde de sábado](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%202)
+- [El conjunto de Mandelbrot](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%203)
+- [Evaluar un polinomio](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%204)
+- [Los k elementos mayores](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%205)
+- [Paréntesis equilibrados](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%206/06.cpp)
+- [El juego de la linterna](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%207/07.cpp)
+- [Duplicar una lista enlazada](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%208)
+- [Invertir una lista enlazada](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%209)
+- [Insertar elementos en una lista enlazada](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2010)
+- [Mezclar listas enlazadas ordenadas](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2011)
+- [El alumno afortunado](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2012/12.cpp)
+- [Decodificación de mensajes](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2014/14.cpp)
+- [Coge el sobre y corre](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2015/15.cpp)
+- [Un viaje a la luna](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2016)
+- [Embarcando coches](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2016A/16A.cpp)
+- [Borrar uno de cada dos](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2016C)
+- [Eliminar los elementos decrecientes de una lista enlazada simple](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2016D)
 ---
