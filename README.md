@@ -100,3 +100,11 @@ Desarrollados en C++
 - [Referencias cruzadas](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2031/31.cpp)
 - [Eligiendo deporte](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2032/32.cpp)
 - [Ranking de un concurso de programación](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Diccionarios/Ejercicio%2033/33.cpp)
+
+## 8. Aplicaciones TAD's
+- [Carnet por puntos 1](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Aplicaciones%20TADs/Ejercicio%2034)
+- [Carnet por puntos 2](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Aplicaciones%20TADs/Ejercicio%2035)
+- [Consultorio médico](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Aplicaciones%20TADs/Ejercicio%2036)
+- [Autoescuela](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Aplicaciones%20TADs/Ejercicio%2037)
+- [iPud](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Aplicaciones%20TADs/Ejercicio%2038)
+- [Venta de libros por internet](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Aplicaciones%20TADs/Ejercicio%2039)
