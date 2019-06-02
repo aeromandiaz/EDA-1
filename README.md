@@ -7,8 +7,6 @@ Curso 2018 - 2019
 Desarrollados en C++
 
 ---
-
----
 ## 1. Recursivos
 - [01 - Multiplicacion del campesino egipcio](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Recursion/01.cpp)
 - [02 - Transformar un numero decimal a binario](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Recursion/02.cpp)
@@ -40,17 +38,36 @@ Desarrollados en C++
 
 ---
 ## 3. Backtracking (Vuelta atrás)
-- [dge17 - Curva cóncava](https://github.com/javimv36/EDA/blob/master/files/dge17.cpp)
-- [Creciente por los pelos](https://github.com/javimv36/EDA/blob/master/files/feb17-2.cpp)
+- [Enunciados](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/enunciados.pdf)
+- [24 - Torres de colores](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/24.cpp)
+- [25 - Luces de Navidad](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/25.cpp)
+- [26 - Papa Noel reparte juguetes](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/26.cpp)
+- [27 - Los funcionarios del Ministerio](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/27.cpp)
+- [28 - Compra de la semana](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/28.cpp)
+- [29 - Necesito otro abrigo](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/29.cpp)
+- [29 - Necesito otro abrigo](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/29.cpp)
+- [30 - Los funcionarios del Ministerio 2](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/30.cpp)
+- [31 - Buscando actores para la película](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/31.cpp)
+- [33 - Adornando la casa por Navidad](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/33.cpp)
+- [34 - Las tareas de la clase](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/34.cpp)
+- [35 - Escuchando música](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Vuelta%20atras/35.cpp)
+
 
 ---
 ## 4. Iterativos
-- [Productos dieta](https://github.com/javimv36/EDA/blob/master/files/feb15-3.cpp)
-- [Caballo](https://github.com/javimv36/EDA/blob/master/files/caballo.cpp)
-- [Genera creciente por los pelos y d-divertido](https://github.com/javimv36/EDA/blob/master/files/feb17-3.cpp)
-
-
-  - [Todos los elementos repetidos 2 veces menos unos](https://github.com/javimv36/EDA/blob/master/files/feb17-2-C.cpp)
+- [36 - Problema 2](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/36.cpp)
+- [37 - Problema 3](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/37.cpp)
+- [38 - Asalto al tren](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/38.cpp)
+- [39 - Rescate aereo 1](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/39.cpp)
+- [40 - Todos con la selección](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/40.cpp)
+- [41 - Piedras preciosas](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/41.cpp)
+- [42 - Encuentra la última posición de equilibrio](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/42.cpp)
+- [43 - Suma de valores](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/43.cpp)
+- [44 - Heidi, una nueva cabaña](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/44.cpp)
+- [45 - Cenando con los amigos](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/45.cpp)
+- [46 - Número de elementos de una matriz que se encuentran situados en su fila](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/46.cpp)
+- [47 - Cuenta las franjas de k columnas con mas de x ceros en al menos y columnas de la franja](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/47.cpp)
+- [48 - Por una buena pesca](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/48.cpp)
 
 ---
 ## 5. TAD's lineales
