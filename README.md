@@ -73,3 +73,21 @@ Desarrollados en C++
 - [Borrar uno de cada dos](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2016C)
 - [Eliminar los elementos decrecientes de una lista enlazada simple](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/TAD's%20lineales/Ejercicio%2016D)
 ---
+
+## 6. Árboles
+- [Altura de un árbol general](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2017/17.cpp)
+- [Los becarios precarios](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Arboles/Ejercicio%2018)
+- [Número de nodos, hojas y altura de un árbol binario](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2019/19.cpp)
+- [La frontera](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2020/20.cpp)
+- [Elemento mínimo de un árbol](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2021/21.cpp)
+- [Diámetro de un árbol binario](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2022/22.cpp)
+- [Excursionistas atrapados](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2023/23.cpp)
+- [Reconstrucción de un árbol binario](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2024/24.cpp)
+- [La barrera de los primos](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2025/25.cpp)
+- [Arboles zurdos](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2025B/25B.cpp)
+- [Laberintos con dragones](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Arboles/Ejercicio%2025C)
+- [Árbol binario simétrico](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2025D/25D.cpp)
+- [Aguaslimpias](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2025E/25E.cpp)
+- [¿Es un árbol binario de búsqueda?](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2026/26.cpp)
+- [Reconstrucción de un árbol binario de búsqueda](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%202/Arboles/Ejercicio%2027/27.cpp)
+- [lower-bound](https://github.com/darldil/ProblemasEDA/tree/master/Cuatrimestre%202/Arboles/Ejercicio%2027A)
