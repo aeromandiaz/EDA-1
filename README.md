@@ -8,6 +8,7 @@ Desarrollados en C++
 
 ---
 ## 1. Recursivos
+- [Enunciados](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Recursion/enunciados.pdf)
 - [01 - Multiplicacion del campesino egipcio](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Recursion/01.cpp)
 - [02 - Transformar un numero decimal a binario](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Recursion/02.cpp)
 - [03 - Invertir los digitos de un numero](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Recursion/03.cpp)
@@ -55,6 +56,7 @@ Desarrollados en C++
 
 ---
 ## 4. Iterativos
+- [Enunciados](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/enunciados.pdf)
 - [36 - Problema 2](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/36.cpp)
 - [37 - Problema 3](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/37.cpp)
 - [38 - Asalto al tren](https://github.com/darldil/ProblemasEDA/blob/master/Cuatrimestre%201/Iterativos/38.cpp)
